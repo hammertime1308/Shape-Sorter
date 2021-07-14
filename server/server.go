@@ -16,6 +16,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	data, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		fmt.Println("Error = ", err.Error())
+		http.Error(w, fmt.Sprintf("Error = %v", err.Error()), 400)
 		os.Exit(2)
 	}
 	object := shapes.Parse(string(data))
